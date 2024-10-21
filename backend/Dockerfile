@@ -1,4 +1,4 @@
-FROM node:20 as builder
+FROM node:20 AS builder
 WORKDIR /opt/server
 COPY package.json .
 COPY *.js .
