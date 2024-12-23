@@ -26,12 +26,17 @@ pipeline {
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/Srinualajangi/Docker-Expense.git', branch: 'main', credentialsId: 'github-cred'
+            }
+        }
         stage('Setup Environment') {
             steps {
                 script {
                     environment = params.ENVIRONMENT
                     appVersion = params.version
-                    account_id = pipelineGlobals.getAccountID(environment)
+                    // account_id = pipelineGlobals.getAccountID(environment)
                 }
             }
         }
