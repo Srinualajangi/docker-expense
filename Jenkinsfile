@@ -11,14 +11,14 @@ pipeline {
         disableConcurrentBuilds()
     }
 
-    parameters {
-        choice(name: 'ENVIRONMENT', choices: ['dev', 'qa', 'uat', 'pre-prod', 'prod'], description: 'Select your environment')
-        string(name: 'version', description: 'Enter your app version')
-    }
+    // parameters {
+    //     choice(name: 'ENVIRONMENT', choices: ['dev', 'qa', 'uat', 'pre-prod', 'prod'], description: 'Select your environment')
+    //     string(name: 'version', description: 'Enter your app version')
+    // }
 
     environment {
         appVersion = ''
-        region = 'us-east-2'
+        // region = 'us-east-2'
         account_id = ''
         project = 'expense'
         environment = ''
@@ -31,15 +31,15 @@ pipeline {
                 git url: 'https://github.com/Srinualajangi/Docker-Expense.git', branch: 'main', credentialsId: 'github-cred'
             }
         }
-        stage('Setup Environment') {
-            steps {
-                script {
-                    environment = params.ENVIRONMENT
-                    appVersion = params.version
-                    // account_id = pipelineGlobals.getAccountID(environment)
-                }
-            }
-        }
+        // stage('Setup Environment') {
+        //     steps {
+        //         script {
+        //             environment = params.ENVIRONMENT
+        //             appVersion = params.version
+        //             // account_id = pipelineGlobals.getAccountID(environment)
+        //         }
+        //     }
+        // }
 
         stage("Docker Build") {
             steps {
